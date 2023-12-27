@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Select version
+{% endblock %}
+
+{% block main %}
+<div class="wrapper">
+<h1>Select option</h1>
+<div class="card">
+    <div class="card__version">
+        <form method="post">
+            <label for="v1">Revision:</label>
+            <select name="v1"  value="{{ request.form.get('v1', 'Empty version') }}">
+                {% for conf in configs %}
+                    <option value="{{conf.revision}}">{{conf.revision}} </option>
+                {% endfor %}
+            </select>         
+            <button type="submit">View</button>
+        </form>
+    </div>
+
+    <div class="card__output">
+        {% if content %} 
+            <span class="output">{{content}}</span>             
+        {% endif %}
+    </div>
+</div>
+</div>
+{% endblock %}

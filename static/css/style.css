@@ -1,0 +1,44 @@
+
+.wrapper {
+    width: 300px;
+    margin: auto;
+}
+
+.card {
+    box-sizing: border-box;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: gainsboro;
+    
+}
+
+.card__version {
+    box-sizing: border-box;
+    height: 20px;
+    margin: 5px;
+    text-align: center;
+}
+
+.card__version form {
+    display: inline-block;
+}
+
+
+.card__output {
+    box-sizing: border-box;
+    height: 250px;
+    width: 280px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 6px;
+    background-color: white;
+    text-align: center;
+    font-size: x-large;
+    color: blueviolet;
+}
+
+.card__output span {
+    display: inline-block;
+    margin-top: 95px;
+}
