@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, jsonify
 import sqlite3
 
 from config import Config
@@ -43,11 +43,10 @@ def view():
     dbase = FDataBase(db)
     configs = sorted(dbase.read_conf(), key=lambda x: x.revision, reverse=True)
     conf = configs[0].configuration  
-
-    if request.method == 'POST':
-        version = request.form.get('v1')
+    if request.is_json:
+        version = request.json.get('v1')
         conf = dbase.get_conf(version)['config']
-        return render_template('view.html', configs=configs, content=conf)    
+        return {'conf': conf}
     return render_template('view.html', configs=configs, content=conf)
 
 

@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% block head %}
+{% endblock %}
 {% block title %}
 Select version
 {% endblock %}
@@ -9,14 +11,15 @@ Select version
 <div class="card">
     <div class="card__version">
         <form method="post">
-            <label for="v1">Revision:</label>
-            <select name="v1"  value="{{ request.form.get('v1', 'Empty version') }}">
+            <label for="select_version">Revision:</label>
+            <select id=select_version name="v1" value="{{ request.form.get('v1', 'Empty version') }}">
                 {% for conf in configs %}
                     <option value="{{conf.revision}}">{{conf.revision}} </option>
                 {% endfor %}
             </select>         
-            <button type="submit">View</button>
+            
         </form>
+        <button id="test">View</button>
     </div>
 
     <div class="card__output">
@@ -26,4 +29,34 @@ Select version
     </div>
 </div>
 </div>
+
+<script>
+
+let button = document.querySelector('button')
+let span = document.querySelector('span')
+
+function getOpt() {
+    let opt = document.querySelector('select').value
+    let version = {
+    v1: opt,
+    }
+    return version
+}
+
+button.addEventListener('click', function coro() {
+    selectet_version = getOpt()
+    fetch('', {
+    method: 'POST', 
+    body: JSON.stringify(selectet_version), 
+    headers: {'Content-type': 'application/json; charset=UTF-8'},
+    })
+  .then((response) => response.json())
+
+  .then((data) => {
+    console.log(data);
+    span.innerHTML = data.conf;    
+  })
+})
+
+</script>
 {% endblock %}
