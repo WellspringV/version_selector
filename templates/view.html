@@ -32,7 +32,7 @@ Select version
 
 <script>
 
-let button = document.querySelector('button')
+let button = document.querySelector('select')
 let span = document.querySelector('span')
 
 function getOpt() {
@@ -43,7 +43,7 @@ function getOpt() {
     return version
 }
 
-button.addEventListener('click', function coro() {
+button.addEventListener('change', function coro() {
     selectet_version = getOpt()
     fetch('', {
     method: 'POST', 
